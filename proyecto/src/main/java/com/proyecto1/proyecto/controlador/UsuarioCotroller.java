@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 import com.proyecto1.proyecto.models.Usuario;
 
 @RestController
@@ -41,21 +42,21 @@ public class UsuarioCotroller {
             if (u.getIdCLi() == usuario.getIdCLi()) {
                 u.setNombre(usuario.getNombre());
                 u.setApellidos(usuario.getApellidos());
-                return u;  
+                return u;
             }
         }
-        return null;  
+        return null;
     }
-    
+
     // Eliminar un usuario por ID
     @DeleteMapping("/usuario/{IdCli}")
     public ResponseEntity<String> deleteUsuario(@PathVariable int IdCli) {
         for (Usuario u : usuarios) {
             if (u.getIdCLi() == IdCli) {
                 usuarios.remove(u);
-                return ResponseEntity.ok("Usuario eliminado");  // Respuesta exitosa
+                return ResponseEntity.ok("Usuario eliminado"); // Respuesta exitosa
             }
         }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");  
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario no encontrado");
     }
 }

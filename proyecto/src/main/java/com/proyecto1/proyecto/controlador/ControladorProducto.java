@@ -26,6 +26,17 @@ public class ControladorProducto {
         return productos;
     }
 
+    // Listar producto por nombre
+    @GetMapping("/producto/{nombre}")
+    public Producto obtenerProductoPorNombre(@PathVariable String nombre) {
+        for (Producto p : productos) {
+            if (p.getNombre().equalsIgnoreCase(nombre)) {
+                return p; // Retorna el producto encontrado
+            }
+        }
+        return null;
+    }
+
     // Agregar un nuevo producto (Método POST)
     @PostMapping("/producto")
     public Producto agregarProducto(@RequestBody Producto producto) {
